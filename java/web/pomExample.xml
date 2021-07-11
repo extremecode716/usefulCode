@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- POM: Project Object Model -->
+<!-- 최상위 태그 <project> -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <!-- POM 모델 버전이다. 4.0.0 당분간 버전이 바뀔 것은 없다.-->
+  <modelVersion>4.0.0</modelVersion>
+
+  <!--  parent tag: 상위 pom.xml으로 spring-boot-starter-parent를 가져온다.(tomcat 등 포함) -->
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.4.1</version>
+  </parent>
+
+  <!-- 프로젝트 정의 -->
+  <!-- 제작자와 회사, 단체 등을 식별하기 위한 것. 관례적으로 도메인명을 역순을 사용한다.(중복 되지 않도록 하기 위한 명명 규칙)-->
+  <groupId>com.github.prgrms</groupId>
+  <!-- 프로젝트에 할당한 고유 id로 식별자이다. -->
+  <artifactId>spring-assignments</artifactId>
+  <!-- 프로그램 버전이다. -SNAPSHOT 이 붙으면 개발중인 버전이라는 의미이다. -RELEASE는 공식 배포된 버전 -->
+  <version>1.0.0</version>
+  <!--  groupdId:artifactId:version 형태로 문장을 만들어 메이븐 주소라고 부른다.  -->
+
+  <!-- maven 내부에서 반복적으로 사용될 상수 값을 정의할 때 사용. 주로 버전 정보 같은 공통적으로 많이 사용한다. -->
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>1.8</java.version>
+    <java.jwt.version>3.12.0</java.jwt.version>
+    <guava.version>30.1-jre</guava.version>
+    <h2.version>1.4.199</h2.version>
+    <hikariCP.version>3.4.5</hikariCP.version>
+    <commons.lang.version>3.11</commons.lang.version>
+    <commons.io.version>2.8.0</commons.io.version>
+    <jackson.datatype.version>2.11.4</jackson.datatype.version>
+  </properties>
+
+  <!-- 의존성 라이브러리 정보. 최소 groupId, artifactId, version 정보가 필요함 -->
+  <!--  dependencies 색션 아래 새부 `dependency'가 기술됨  -->
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-validation</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jdbc</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>${commons.lang.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>${commons.io.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson.datatype.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.module</groupId>
+      <artifactId>jackson-module-afterburner</artifactId>
+      <version>${jackson.datatype.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-jsr310</artifactId>
+      <version>${jackson.datatype.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.auth0</groupId>
+      <artifactId>java-jwt</artifactId>
+      <version>${java.jwt.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>${guava.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.zaxxer</groupId>
+      <artifactId>HikariCP</artifactId>
+      <version>${hikariCP.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>android-json</artifactId>
+          <groupId>com.vaadin.external.google</groupId>
+        </exclusion>
+        <exclusion>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+  </dependencies>
+
+  <!--  빌드 정보 plugins : 빌드에서 사용할 플러그인. 디렉토리 구조  -->
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.2</version>
+        <configuration>
+          <runOrder>alphabetical</runOrder>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <!--  Repository 의존성을 다운로드 받을 위치의 repository 기술되지 않을 시 기본적인 위치 http://repo.maven.apache.org/maven2
+  다수의 <repository> 기술 가능. 회사 내부의 repository를 기술 하기도 한다.
+  nexus, artifactory 를 이용  -->
+  <!--  <repositories></repositories>  -->
+
+  <!-- Plugin Repository maven plugin을 다운로드 받을수 있는 저장소 위치를 기술   -->
+  <!--  <pluginRepositories> </pluginRepositories> -->
+
+  <!--  배포 deploy goal을 실행했을 시 배포되는 위치를 기술함 url 항목에는 일반적으로 회사 내부에 설치한 repository url이 기술된다.(nexus, artifactory등등으로 설치된..)  -->
+  <!--  <distributionManagement></distributionManagement>  -->
+</project>
